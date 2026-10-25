@@ -149,6 +149,11 @@ a:focus-visible {
 	transition: all 0.15s ease;
 }
 
+.profile-card-link:hover {
+	color: #7253ed;
+	background-color: transparent;
+}
+
 .category-link:hover,
 .category-link:focus-visible {
 	color: #7253ed;

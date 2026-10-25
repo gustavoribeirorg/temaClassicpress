@@ -15,15 +15,26 @@ get_sidebar();
 while ( have_posts() ) :
 	the_post();
 	?>
-	<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+	<article id="post-<?php the_ID(); ?>" <?php post_class( 'h-entry' ); ?>>
 		<header class="entry-header">
-			<h1 class="entry-title"><?php the_title(); ?></h1>
+			<h1 class="entry-title p-name"><?php the_title(); ?></h1>
 			<div class="entry-meta">
-				<?php echo esc_html( get_the_date() ); ?>
+				<time class="dt-published" datetime="<?php echo esc_attr( get_the_date( DATE_W3C ) ); ?>">
+					<?php echo esc_html( get_the_date() ); ?>
+				</time>
+				<a class="u-url" href="<?php the_permalink(); ?>">
+					<span class="screen-reader-text"><?php esc_html_e( 'Link permanente', 'the-classicpress-theme' ); ?></span>
+					#
+				</a>
+			</div>
+			<div class="entry-meta p-author h-card">
+				<a class="u-url p-name" href="<?php echo esc_url( home_url( '/' ) ); ?>">
+					<?php echo esc_html( get_the_author() ); ?>
+				</a>
 			</div>
 		</header>
 
-		<div class="entry-content">
+		<div class="entry-content e-content">
 			<?php the_content(); ?>
 		</div>
 

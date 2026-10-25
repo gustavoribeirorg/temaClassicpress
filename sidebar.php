@@ -36,6 +36,15 @@ $current_cat = is_category() ? (int) get_queried_object_id() : 0;
         </nav>
     <?php endif; ?>
 
+    <div class="h-card profile-card">
+        <a class="u-url p-name profile-card-link" href="<?php echo esc_url( home_url( '/' ) ); ?>">
+            <?php echo esc_html( get_bloginfo( 'name' ) ); ?>
+        </a>
+        <a class="u-email profile-card-link" rel="me" href="mailto:falecom@gustavoribeiro.net">
+            falecom@gustavoribeiro.net
+        </a>
+    </div>
+
     <?php
     $pages = get_pages();
     $current_page_id = get_queried_object_id();

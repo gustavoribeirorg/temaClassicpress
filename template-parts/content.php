@@ -7,20 +7,27 @@
  * @package the-classicpress-theme
  */
 ?>
-<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+<article id="post-<?php the_ID(); ?>" <?php post_class( 'post' === get_post_type() ? 'h-entry' : '' ); ?>>
 	<header class="entry-header">
 		<h1 class="entry-title">
-			<a href="<?php the_permalink(); ?>" rel="bookmark"><?php the_title(); ?></a>
+			<a class="u-url p-name" href="<?php the_permalink(); ?>" rel="bookmark"><?php the_title(); ?></a>
 		</h1>
 
 		<?php if ( 'post' === get_post_type() ) : ?>
 			<div class="entry-meta">
-				<?php echo esc_html( get_the_date() ); ?>
+				<time class="dt-published" datetime="<?php echo esc_attr( get_the_date( DATE_W3C ) ); ?>">
+					<?php echo esc_html( get_the_date() ); ?>
+				</time>
+			</div>
+			<div class="entry-meta p-author h-card">
+				<a class="u-url p-name" href="<?php echo esc_url( home_url( '/' ) ); ?>">
+					<?php echo esc_html( get_the_author() ); ?>
+				</a>
 			</div>
 		<?php endif; ?>
 	</header>
 
-	<div class="entry-content">
+	<div class="entry-content<?php echo ( 'post' === get_post_type() ) ? ' e-content' : ''; ?>">
 		<?php
 		the_content(
 			sprintf(
